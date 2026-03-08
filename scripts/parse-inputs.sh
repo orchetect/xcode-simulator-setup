@@ -116,13 +116,13 @@ case $INPUT_TARGET_LOWERCASE in
   tv)
     SIMPLATFORM="tvOS"
     SIMPLATFORM_REGEX="tvOS"
-    SIMDEVICE_REGEX="AppleTV"
+    SIMDEVICE_REGEX="Apple\sTV"
     ;;
   
   tv-4k)
     SIMPLATFORM="tvOS"
     SIMPLATFORM_REGEX="tvOS"
-    SIMDEVICE_REGEX="AppleTV\s4K"
+    SIMDEVICE_REGEX="Apple\sTV\s4K"
     ;;
   
   watch)
