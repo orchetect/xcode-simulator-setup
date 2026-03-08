@@ -10,7 +10,7 @@
 # - https://docs.github.com/en/actions/how-tos/create-and-publish-actions/set-exit-codes
 
 # Inputs:
-# - WORKSPACEPATH           optional
+# - WORKSPACEPATH           required
 # - SCHEME                  required
 # - SIMPLATFORM             required
 # - SIMPLATFORM_SHORT       required
@@ -19,8 +19,10 @@
 # - OSVERSION_REGEX         optional
 
 # Step outputs produced:
-# - destination-platform    Platform string (ie: "iOS Simulator") which can be used verbatim in `xcodebuild destination="platform=X"` in place of X
-# - destination-id          ID string (ie: "17FC425F-F336-48DC-8D5A-05DA7BCF7B7D") which can be used verbatim in `xcodebuild destination="id=X"` in place of X
+# - id
+# - platform
+# - platform-short
+# - workspace-path
 
 # Note that validation of variables is skipped in this script, as validation already occurred
 # in the action step that runs parse-inputs.sh.
@@ -60,5 +62,7 @@ if [[ -z $DESTID ]]; then echo "⛔️ Error: No matching simulators available."
 echo "🟢 Found device simulator: $DESTDESC"
 
 # Set output variable.
-echo "destination-platform=$(echo $SIMPLATFORM)" >> $GITHUB_OUTPUT
-echo "destination-id=$(echo $DESTID)" >> $GITHUB_OUTPUT
+echo "id=$(echo $DESTID)" >> $GITHUB_OUTPUT
+echo "platform=$(echo $SIMPLATFORM)" >> $GITHUB_OUTPUT
+echo "platform-short=$(echo $SIMPLATFORM_SHORT)" >> $GITHUB_OUTPUT
+echo "workspace-path=$(echo $WORKSPACEPATH)" >> $GITHUB_OUTPUT

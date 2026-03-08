@@ -24,12 +24,18 @@ inputs:
     required: false
 
 outputs:
-  destination-platform:
-    description: "Platform"
-    value: ${{ steps.parse-inputs.outputs.parsed-platform }}
-  destination-id:
-    description: "Simulator ID"
+  id:
+    description: "Destination Simulator ID"
     value: ${{ steps.id-finder.outputs.id }}
+  platform:
+    description: "Destination Platform"
+    value: ${{ steps.id-finder.outputs.platform }}
+  platform-short:
+    description: "Platform (Short)"
+    value: ${{ steps.id-finder.outputs.platform-short }}
+  workspace-path:
+    description: "Xcode workspace path relative to repo root"
+    value: ${{ steps.id-finder.outputs.workspace-path }}
 
 runs:
   using: "composite"
@@ -82,9 +88,11 @@ runs:
         SIMDEVICE_REGEX: ${{ steps.parse-inputs.outputs.parsed-device-regex }}
         OSVERSION_REGEX: ${{ steps.parse-inputs.outputs.parsed-os-version-regex }}
       # outputs:
-      #  destination-platform
-      #  destination-id
-
+      #  id
+      #  platform
+      #  platform-short
+      #  workspace-path
+      
 branding:
   icon: 'code'
   color: 'blue'

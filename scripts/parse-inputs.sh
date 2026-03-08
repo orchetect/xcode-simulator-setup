@@ -7,13 +7,13 @@
 # - INPUT_OSVERSION      optional
 
 # Step outputs produced:
-# - parsed-workspace-path    Relative path to .xcworkspace file from repo root
-# - parsed-scheme            Xcode scheme name
+# - parsed-device-regex      Device name regex used when parsing simulator list output from `xcodebuild -showdestinations`
+# - parsed-os-version-regex  OS version regex used when parsing simulator list output from `xcodebuild -showdestinations` (Optional)
 # - parsed-platform          Platform string (ie: "iOS Simulator") which can be used verbatim in `xcodebuild destination="platform=X"` in place of X
 # - parsed-platform-short    Platform short name (ie: "iOS")
-# - parsed-platform-regex    Platform name regex used when parsing simulator list output from `xcodebuild -showdestinations``
-# - parsed-device-regex
-# - parsed-os-version-regex
+# - parsed-platform-regex    Platform name regex used when parsing simulator list output from `xcodebuild -showdestinations`
+# - parsed-scheme            Xcode scheme name
+# - parsed-workspace-path    Relative path to .xcworkspace file from repo root
 
 # Setup workspace path.
 if [[ -z $INPUT_WORKSPACEPATH ]]; then
@@ -200,10 +200,10 @@ echo "Using platform name regex: $SIMPLATFORM_REGEX"
 echo "Using device name regex: $SIMDEVICE_REGEX"
 
 # Set output variables.
-echo "parsed-workspace-path=$(echo $WORKSPACEPATH)" >> $GITHUB_OUTPUT
-echo "parsed-scheme=$(echo $SCHEME)" >> $GITHUB_OUTPUT
+echo "parsed-device-regex=$(echo $SIMDEVICE_REGEX)" >> $GITHUB_OUTPUT
+echo "parsed-os-version-regex=$(echo $OSVERSION_REGEX)" >> $GITHUB_OUTPUT
 echo "parsed-platform=$(echo $SIMPLATFORM)" >> $GITHUB_OUTPUT
 echo "parsed-platform-short=$(echo $SIMPLATFORM_SHORT)" >> $GITHUB_OUTPUT
 echo "parsed-platform-regex=$(echo $SIMPLATFORM_REGEX)" >> $GITHUB_OUTPUT
-echo "parsed-device-regex=$(echo $SIMDEVICE_REGEX)" >> $GITHUB_OUTPUT
-echo "parsed-os-version-regex=$(echo $OSVERSION_REGEX)" >> $GITHUB_OUTPUT
+echo "parsed-scheme=$(echo $SCHEME)" >> $GITHUB_OUTPUT
+echo "parsed-workspace-path=$(echo $WORKSPACEPATH)" >> $GITHUB_OUTPUT
