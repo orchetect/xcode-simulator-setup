@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# parse-inputs.sh
+# xcode-simulator-setup • https://github.com/orchetect/xcode-simulator-setup
+# © 2026 Steffan Andrews • Licensed under MIT License
+
 # Inputs used:
 # - INPUT_WORKSPACEPATH  optional
 # - INPUT_SCHEME         required

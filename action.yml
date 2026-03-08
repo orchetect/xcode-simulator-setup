@@ -1,4 +1,4 @@
-name: 'Xcode Simulator Selector'
+name: 'Xcode Simulator Setup'
 author: 'Steffan Andrews'
 description: 'Dynamically find the best available Xcode device simulator.'
 inputs:
