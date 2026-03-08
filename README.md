@@ -123,11 +123,16 @@ jobs:
         target: iOS
     - name: Build
       run: |
-        xcodebuild build -workspace "$WORKSPACEPATH" \
-        -scheme "$SCHEME" -destination "generic/platform=iOS"
+        xcodebuild build \
+          -workspace "$WORKSPACEPATH" \
+          -scheme "$SCHEME" \
+          -destination "generic/platform=iOS"
     - name: Unit Test
-      run: xcodebuild test -workspace "$WORKSPACEPATH" \
-        -scheme "$SCHEME" -destination "platform=iOS Simulator,id=$DESTID"
+      run: |
+        xcodebuild test \
+          -workspace "$WORKSPACEPATH" \
+          -scheme "$SCHEME" \
+          -destination "platform=iOS Simulator,id=$DESTID"
       env:
         DESTID: ${{ steps.prep-sim.outputs.id }}
 ```
